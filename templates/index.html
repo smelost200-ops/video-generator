@@ -1,0 +1,52 @@
+templates/index.html<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Генератор видео — Proxy API</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>Генератор видео</h1>
+      <p class="subtitle">
+        Flask + Proxy API. Опишите сцену текстом — модель сгенерирует
+        4-секундный ролик 720p. Статус обновляется без перезагрузки страницы.
+      </p>
+    </header>
+
+    <main>
+      <section class="card">
+        <form id="video-form" autocomplete="off">
+          <label for="prompt">Промпт (описание сцены) *</label>
+          <textarea id="prompt" name="prompt" rows="4" required
+            placeholder="Например: Кот в деловом костюме печатает на ноутбуке в офисе, вечерний город за окном, тёплый свет"></textarea>
+
+          <div class="buttons">
+            <button type="submit" id="generate-btn">Начать генерацию</button>
+          </div>
+          <p class="hint">Генерация занимает ~2–5 минут и стоит примерно 85–105 ₽ за ролик.</p>
+        </form>
+
+        <div id="status" class="status hidden"></div>
+        <div id="bar-wrap" class="bar-wrap hidden">
+          <div id="bar" class="bar"></div>
+        </div>
+      </section>
+
+      <section id="result-block" class="card hidden">
+        <h2>Результат</h2>
+        <video id="video" class="video" controls></video>
+        <div class="buttons">
+          <a id="download-link" class="btn" href="#" download>⬇️ Скачать видео</a>
+        </div>
+        <p id="task-info" class="hint"></p>
+      </section>
+    </main>
+
+    <footer class="hint">PE10.4 · учебный проект · backend: request.py, frontend: Flask + Telegram-бот</footer>
+  </div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
